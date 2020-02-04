@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '9483'
+  name: prometheus
+spec:
+  type: ClusterIP
+  selector:
+    app: appconnect
+  ports:
+  - targetPort: 9483
+    port: 9483
+    protocol: TCP
+  
+   
