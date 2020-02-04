@@ -1,0 +1,21 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: appconnect
+spec:
+  type: LoadBalancer
+  selector:
+    app: appconnect
+  ports:
+  - name: admin
+    port: 7600
+    targetPort: 7600
+  - name: adminbus
+    port: 7800
+    targetPort: 7800
+  - name: adminbusseguro
+    port: 7843
+    targetPort: 7843
+  - name: adminmq
+    port: 1414
+    targetPort: 1414
