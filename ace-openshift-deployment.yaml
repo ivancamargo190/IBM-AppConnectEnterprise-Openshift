@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appconnect
+  labels:
+    app: appconnect
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: appconnect
+  template:
+    metadata:
+      labels:
+        app: appconnect
+    spec:
+      serviceAccount: thanos
+      containers:
+      - name: appconnect
+        image: gcr.io/sincere-chariot-260312/davivienda@sha256:e114b64d91eb58a771cf69a3027f49156015ddff97fb94bf52c5d91a486118bb
+        ports:
+        - containerPort: 7600
+          name: xaaa2
+        - containerPort: 7800
+          name: yeee2
+        - containerPort: 7843
+          name: ziii2
+        - containerPort: 1414
+          name: aooo2
+        env:
+        - name: LICENSE
+          value: "accept"
+        - name: MQ_QMGR_NAME
+          value: "QMGR"
+        - name: ACE_SERVER_NAME
+          value: "ACESERVER"
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        #command: ["echo"]
+        #args: ["$(LICENSE) $(MQ_QMGR_NAME) $(ACE_SERVER_NAME)"]
