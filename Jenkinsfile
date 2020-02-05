@@ -24,7 +24,7 @@ pipeline {
                 }
             }
         }
-        stage('Push Docker Image to Harbor') {
+        stage('Push Docker Image to IBM Container Registry') {
             when {
                 branch 'master'
             }
@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-        stage('DeployToVMwarePKS') {
+        stage('Deploy ACE to Openshift') {
             when {
                 branch 'master'
             }
