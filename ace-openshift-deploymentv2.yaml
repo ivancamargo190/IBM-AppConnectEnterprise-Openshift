@@ -17,7 +17,7 @@ spec:
       serviceAccount: icamargo
       containers:
       - name: appconnect
-        image: us.icr.io/registryibm/ace
+        image: us.icr.io/registryibm/ace:latest
         ports:
         - containerPort: 7600
           name: xaaa2
