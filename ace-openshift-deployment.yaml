@@ -17,7 +17,7 @@ spec:
       serviceAccount: icamargo
       containers:
       - name: appconnect
-        image: gcr.io/ibmcloud/aceprd@sha256:66763bf0f8016a61d1c8474620f7e55a5c1a2b4ddf15f99e9513649913ec8762
+        image: us.gcr.io/sincere-chariot-260312/acewithbar@sha256:2fd78a8432cbfaf1ea7d73d24d00b93cd90fe6e9fc7bb9a4f8e8606ef8a05fd1
         ports:
         - containerPort: 7600
           name: xaaa2
@@ -27,8 +27,12 @@ spec:
           name: ziii2
         - containerPort: 1414
           name: aooo2
-        - containerPort: 9843
-          name: prometheus  
+        - containerPort: 9483
+          name: staticsace
+        - containerPort: 9157
+          name: staticsmq
+        - containerPort: 4414
+          name: webbroker 
         env:
         - name: LICENSE
           value: "accept"
@@ -37,7 +41,21 @@ spec:
         - name: ACE_SERVER_NAME
           value: "ACESERVER"
         - name: ACE_ENABLE_METRICS
-          value: "true"  
+          value: "true" 
+        - name:  ACE_TRUSTSTORE_PASSWORD
+          value: "passrods"
+        - name: ACE_KEYSTORE_PASSWORD
+          value: "passrods"
+        - name:  ACE_ADMIN_SERVER_SECURITY
+          value: "true"
+        - name:  ACE_ADMIN_SERVER_CA
+          value: "=/home/aceuser/initial-config/truststore/cacert.crt"
+        - name:  ACE_ADMIN_SERVER_CERT
+          value: "=/home/aceuser/initial-config/keystore/mykey.crt"
+        - name:  ACE_ADMIN_SERVER_KEY
+          value: "=/home/aceuser/initial-config/keystore/mykey.key"
+        - name:  MQ_ENABLE_METRICS
+          value: "true"
         securityContext:
           privileged: true
         resources:
