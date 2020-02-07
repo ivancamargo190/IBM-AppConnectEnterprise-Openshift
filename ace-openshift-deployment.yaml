@@ -49,11 +49,11 @@ spec:
         - name:  ACE_ADMIN_SERVER_SECURITY
           value: "true"
         - name:  ACE_ADMIN_SERVER_CA
-          value: "=/home/aceuser/initial-config/truststore/cacert.crt"
+          value: "/home/aceuser/initial-config/truststore/cacert.crt"
         - name:  ACE_ADMIN_SERVER_CERT
-          value: "=/home/aceuser/initial-config/keystore/mykey.crt"
+          value: "/home/aceuser/initial-config/keystore/mykey.crt"
         - name:  ACE_ADMIN_SERVER_KEY
-          value: "=/home/aceuser/initial-config/keystore/mykey.key"
+          value: "/home/aceuser/initial-config/keystore/mykey.key"
         - name:  MQ_ENABLE_METRICS
           value: "true"
         securityContext:
