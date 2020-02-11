@@ -17,7 +17,7 @@ spec:
       serviceAccount: icamargo
       containers:
       - name: appconnect
-        image: us.gcr.io/sincere-chariot-260312/acewithbar@sha256:2fd78a8432cbfaf1ea7d73d24d00b93cd90fe6e9fc7bb9a4f8e8606ef8a05fd1
+        image: us.gcr.io/sincere-chariot-260312/ace11007mq9003saldosv1os@sha256:9018ce3ce436b65147ee10b2ab7d32ce3cfed62c191beb43a0048a2f431b62b8
         ports:
         - containerPort: 7600
           name: xaaa2
@@ -47,7 +47,7 @@ spec:
         - name: ACE_KEYSTORE_PASSWORD
           value: "passrods"
         - name:  ACE_ADMIN_SERVER_SECURITY
-          value: "true"
+          value: "false"
         - name:  ACE_ADMIN_SERVER_CA
           value: "/home/aceuser/initial-config/truststore/cacert.crt"
         - name:  ACE_ADMIN_SERVER_CERT
