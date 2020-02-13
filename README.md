@@ -16,5 +16,5 @@ You can build an image containing one of the following combinations:
 # Copyright
 
 © Copyright IBM Corporation 2020
-Ivan Raul Camargo Senior Technical Solutions Architect IBM
-Juan Carlos Mesa Customer Specialist IBM ACE
+- Ivan Raul Camargo Senior Technical Solutions Architect IBM
+- Juan Carlos Mesa Customer Specialist IBM ACE
