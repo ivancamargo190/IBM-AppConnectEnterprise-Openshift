@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         PATH = "/usr/local/go/bin:$PATH"
-        DOCKER_IMAGE_NAME = "harbor.corp.local/library/go-cicd-kubernetes"
+        DOCKER_IMAGE_NAME = "us.gcr.io/sincere-chariot-260312/ace11007mq9003saldosv1os"
     }
     stages {
         stage('Build') {
@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy ACE To Openshift') {
+        stage('Deploy ACE to Openshift') {
             when {
                 branch 'master'
             }

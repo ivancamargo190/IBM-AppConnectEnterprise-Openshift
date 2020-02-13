@@ -19,3 +19,15 @@ spec:
   - name: adminmq
     port: 1414
     targetPort: 1414
+  - name: staticsace
+    port: 9483
+    targetPort: 9483
+  - name: staticsmq
+    port: 9157
+    targetPort: 9157
+  - name: webbroker
+    port: 4414
+    targetPort: 4414
+  
+
+
