@@ -11,6 +11,7 @@ pipeline {
     STAGE_PROJECT = "ace-openshift"
     TEMPLATE_NAME = "App Connect Enterprise"
     ARTIFACT_FOLDER = "target"
+    REGISTRY = "us.gcr:tttttt"
     PORT = 8081;
 }
 stages {
@@ -21,27 +22,29 @@ stages {
     }
     stage("Build AppConnectEnterprise Image"){
    when {
-        expression {
-            openshift.withCluster() {
-            openshift.withProject(DEV_PROJECT) {
-                return !openshift.selector("bc", "${TEMPLATE_NAME}").exists();
-                }
-            }
-        }
+     branch 'dev'
+        
     }
     steps {
         script {
-            openshift.withCluster() {
-                openshift.withProject(DEV_PROJECT) {
-                    openshift.newBuild("--name=${TEMPLATE_NAME}", "--docker-image=docker.io/nginx:mainline-alpine", "--binary=true")
-                }
+          app = docker.build(REGISTRY)
             }
-        }
-    }
+    
     }
     stage("Push to Registry"){
-    // Do Something
+    when {
+                branch 'dev'
+            }
     }
+    steps {
+          script {
+              docker.withRegistry('us.gcr:tttttt', 'harbor') {
+              app.push("${env.BUILD_NUMBER}")
+                app.push("latest")
+                    }
+                }
+       }
+
     stage("Deploy to RedHat Openshift"){
     // Do Something
     }
