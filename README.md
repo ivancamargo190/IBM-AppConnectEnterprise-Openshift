@@ -1,4 +1,4 @@
-# App Connect Enterprise over RedHat Openshift Container Platform 3.11
+# App Connect Enterprise Running over RedHat Openshift Container Platform 3.11
 
 
 <img src="./app_connect_light_256x256.png" width="100" alt="IBM ACE logo"/>
@@ -14,10 +14,10 @@ This repo includes documentation and examples for:
 - IBM App Connect Enterprise loading BAR Files from dockerfile
 - IBM App Connect Enteprise running over RedHat Openshift Container Platform (yaml files)
 - IBM App Connect Enterprise include logging, monitoring for flows using Prometheus and Grafana dashboard. 
-- CI/CD Pipeline Example to checkout SCM, Build and Deploy ACE over RedHat Openshift Container Platform
+- CI/CD Jenkins Pipeline example to checkout SCM, Build and Deploy ACE over RedHat Openshift Container Platform
 
 # Copyright
 
 © Copyright IBM Corporation 2020
-- Iván Raúl Camargo - Senior Technical Solutions Architect IBM Colombia-GTS
+- Iván Raúl Camargo - Sr. Technical Solutions Architect IBM Colombia-GTS
 - Juan Carlos Mesa - Support Specialist ACE IBM Colombia-TSS
