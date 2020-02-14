@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         PATH = "/usr/local/go/bin:$PATH"
-        DOCKER_IMAGE_NAME = "harbor.corp.local/library/go-cicd-kubernetes"
+        DOCKER_IMAGE_NAME = "us.gcr.io/sincere-chariot-260312/ace11007mq9003saldosv1os"
     }
     stages {
         stage('Build') {
@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when { 
-                branch 'master'
+                branch 'dev'
             }
             steps {
                 script {
@@ -26,11 +26,11 @@ pipeline {
         }
         stage('Push Docker Image to IBM Container Registry') {
             when {
-                branch 'master'
+                branch 'dev'
             }
             steps {
                 script {
-                    docker.withRegistry('https://harbor.corp.local', 'harbor') {
+                    docker.withRegistry('https://us.gcr.io', 'gcr') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
@@ -39,15 +39,15 @@ pipeline {
         }
         stage('Deploy ACE to Openshift') {
             when {
-                branch 'master'
+                branch 'dev'
             }
             steps {
                 milestone(1)
                 kubernetesDeploy(
                   credentialsType: 'KubeConfig',
                   kubeconfigId: 'kubeconfig',
-                  kubeConfig: [path: '/var/lib/jenkins/go-cicd-kubernetesv2/.kube/config'],
-                  configs: 'kubernetes.yaml',
+                  kubeConfig: [path: '/var/lib/jenkins/ace-openshift/.kube/config'],
+                  configs: 'ace-openshift-deployment.yaml',
                   enableConfigSubstitution: true
                 ) 
             }
