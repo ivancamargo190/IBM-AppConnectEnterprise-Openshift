@@ -7,8 +7,8 @@ pipeline {
     GIT_REPO="https://github.com/ivancamargo190/IBM-AppConnectEnterprise-Openshift.git"
     GIT_BRANCH="dev"
     STAGE_TAG = "promoteToQA"
-    DEV_PROJECT = "dev"
-    STAGE_PROJECT = "stage"
+    DEV_PROJECT = "ace-openshift"
+    STAGE_PROJECT = "ace-openshift"
     TEMPLATE_NAME = "App Connect Enterprise"
     ARTIFACT_FOLDER = "target"
     PORT = 8081;
@@ -20,7 +20,24 @@ stages {
   }
     }
     stage("Build AppConnectEnterprise Image"){
-    // Do Something
+   when {
+        expression {
+            openshift.withCluster() {
+            openshift.withProject(DEV_PROJECT) {
+                return !openshift.selector("bc", "${TEMPLATE_NAME}").exists();
+                }
+            }
+        }
+    }
+    steps {
+        script {
+            openshift.withCluster() {
+                openshift.withProject(DEV_PROJECT) {
+                    openshift.newBuild("--name=${TEMPLATE_NAME}", "--docker-image=docker.io/nginx:mainline-alpine", "--binary=true")
+                }
+            }
+        }
+    }
     }
     stage("Push to Registry"){
     // Do Something
