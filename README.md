@@ -5,7 +5,7 @@
 
 [IBM® App Connect Enterprise](https://www.ibm.com/cloud/app-connect/enterprise) running over RedHat Openshift Container PLatform 3.11
 
-The purpose of this repo is share with the community one of the uses cases of integration known as "decentralized integration" using App Connect Enterprise running ReHat Openshift Container Platform
+The purpose of this repo is share with the community one of the uses cases of integration known as "decentralized integration" using App Connect Enterprise running over RedHat Openshift Container Platform
 
 This repo includes documentation and examples for:
 - IBM App Connect Enterprise running into containers
