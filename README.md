@@ -18,28 +18,31 @@ This repo includes documentation and examples for:
 
 1. Preparing Security context constraints over Openshift:
 
-# Openshift Login:
 
-oc login 
+Openshift Login:
 
-# Create project:
+  oc login 
 
-oc adm new-project <project_name>
 
-# Select project:
+Create project:
 
-oc project <project_name>
+  oc adm new-project <project_name>
 
-# Create serviceaccount over project:
+
+Select project:
+
+  oc project <project_name>
+
+
+Create serviceaccount over project:
 
 oc create serviceaccount <sa_name>
 
-# Add SCC with privileged to the serviceaccount:
+Add SCC with privileged to the serviceaccount:
 
 oc adm policy add-scc-to-user privileged -n <project_name> -z <sa_name>
 
-
-
+ 
 
 # Copyright
 
