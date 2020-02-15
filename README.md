@@ -3,7 +3,7 @@
 
 <img src="./avengers.jpg" width="100" alt="IBM ACE logo"/>
 
-Run [IBM® App Connect Enterprise](https://www.ibm.com/cloud/app-connect/enterprise) running over RedHat Openshift Container PLatform 3.11
+[IBM® App Connect Enterprise](https://www.ibm.com/cloud/app-connect/enterprise) running over RedHat Openshift Container PLatform 3.11
 
 The purpose of this repo is share with the community one of the uses cases of integration known as "decentralized integration" using App Connect Enterprise running ReHat Openshift Container Platform
 
