@@ -16,6 +16,30 @@ This repo includes documentation and examples for:
 - IBM App Connect Enterprise include logging, monitoring to infraestructure and flows using prometheus and grafana dashboard
 - CI/CD Pipeline Example using Jenkins to Check SCM, Build and Deploy App Connect Enterprise (with or without BAR Files) over RedHat Openshift
 
+1. Preparing Security context constraints over Openshift:
+
+Openshift Login:
+
+oc login 
+
+Create project:
+
+oc adm new-project <project_name>
+
+Select project:
+
+oc project <project_name>
+
+Create serviceaccount over project:
+
+oc create serviceaccount <sa_name>
+
+Add SCC with privileged to the serviceaccount:
+
+oc adm policy add-scc-to-user privileged -n <project_name> -z <sa_name>
+
+
+
 
 # Copyright
 
