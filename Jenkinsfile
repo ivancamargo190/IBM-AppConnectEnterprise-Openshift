@@ -7,10 +7,11 @@ pipeline {
     GIT_REPO="https://github.com/ivancamargo190/IBM-AppConnectEnterprise-Openshift.git"
     GIT_BRANCH="dev"
     STAGE_TAG = "promoteToQA"
-    DEV_PROJECT = "dev"
-    STAGE_PROJECT = "stage"
+    DEV_PROJECT = "ace-openshift"
+    STAGE_PROJECT = "ace-openshift"
     TEMPLATE_NAME = "App Connect Enterprise"
     ARTIFACT_FOLDER = "target"
+    REGISTRY = "us.gcr:tttttt"
     PORT = 8081;
 }
 stages {
@@ -20,11 +21,30 @@ stages {
   }
     }
     stage("Build AppConnectEnterprise Image"){
-    // Do Something
+   when {
+     branch 'dev'
+        
+    }
+    steps {
+        script {
+          app = docker.build(REGISTRY)
+            }
+    
     }
     stage("Push to Registry"){
-    // Do Something
+    when {
+                branch 'dev'
+            }
     }
+    steps {
+          script {
+              docker.withRegistry('us.gcr:tttttt', 'harbor') {
+              app.push("${env.BUILD_NUMBER}")
+                app.push("latest")
+                    }
+                }
+       }
+
     stage("Deploy to RedHat Openshift"){
     // Do Something
     }
