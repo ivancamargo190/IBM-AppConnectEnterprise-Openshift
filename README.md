@@ -1,7 +1,7 @@
 # App Connect Enterprise running over RedHat Openshift Container Platform 3.11
 
 
-<img src="./avengers.jpg" width="100" alt="IBM ACE logo"/>
+<img src="./avengers.jpg" width="80" alt="IBM ACE logo"/>
 
 [IBM® App Connect Enterprise](https://www.ibm.com/cloud/app-connect/enterprise) running over RedHat Openshift Container PLatform 3.11
 
@@ -16,7 +16,7 @@ This repo includes documentation and examples for:
 - IBM App Connect Enterprise include logging, monitoring to infraestructure and flows using prometheus and grafana dashboard
 - CI/CD Pipeline Example using Jenkins to Check SCM, Build and Deploy App Connect Enterprise (with or without BAR Files) over RedHat Openshift
 
-1. Preparing Security context constraints over Openshift:
+1. [Preparing Security context constraints over Openshift]:
 
 - Openshift Login:
 
