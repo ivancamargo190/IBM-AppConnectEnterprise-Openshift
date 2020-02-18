@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      serviceAccount: icamargo
+      containers:
+      - name: mysql
+        image: us.gcr.io/sincere-chariot-260312/mysqllegado@sha256:7bfa0d92514b07092f4a7e68dd8bb35eb0bc50cb998fec7245eac1b2396a2315
+        ports:
+        - containerPort: 3306
+          name: mysql
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        #command: ["echo"]
+        #args: ["$(LICENSE) $(MQ_QMGR_NAME) $(ACE_SERVER_NAME)"]
