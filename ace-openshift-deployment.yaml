@@ -17,7 +17,7 @@ spec:
       serviceAccount: icamargo
       containers:
       - name: appconnect
-        image: us.gcr.io/sincere-chariot-260312/acebancamovil110007@sha256:b5e9e7ae92f3937b6c54c1bfae7cd4a9448ec2029f7ddad24ca83ff751cada3e
+        image: us.gcr.io/sincere-chariot-260312/acebancamovil110007v2@sha256:d3d4ba22b04e0234164db95df9f389cfb576d0f5bc46107946ac97ee0714551e
         ports:
         - containerPort: 7600
           name: adminace
