@@ -7,16 +7,16 @@ spec:
   selector:
     app: appconnect
   ports:
-  - name: admin
+  - name: adminace
     port: 7600
     targetPort: 7600
-  - name: adminbus
+  - name: listenerace
     port: 7800
     targetPort: 7800
-  - name: adminbusseguro
+  - name: sslport
     port: 7843
     targetPort: 7843
-  - name: adminmq
+  - name: mqport
     port: 1414
     targetPort: 1414
   - name: staticsace
@@ -28,6 +28,9 @@ spec:
   - name: webbroker
     port: 4414
     targetPort: 4414
+  - name: listenerace2
+    port: 7801
+    targetPort: 7801
   
 
 
