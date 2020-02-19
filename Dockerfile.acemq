@@ -17,9 +17,12 @@ RUN go test -v ./internal/...
 RUN go vet ./cmd/... ./internal/...
 
 #ARG ACE_INSTALL=ace-11.0.0.5.tar.gz
-ARG ACE_INSTALL=https://aceibm.s3.amazonaws.com/ace/ace-11.0.0.7.tar.gz
+#ARG ACE_INSTALL=ace-11.0.0.7.tar.gz
+ARG ACE_INSTALL=ace-11.0.0.7.tar.gz
 WORKDIR /opt/ibm
-COPY $ACE_INSTALL .
+#COPY deps/$ACE_INSTALL .
+ADD https://aceibm.s3.amazonaws.com/ace/ace-11.0.0.7.tar.gz .
+#COPY https://aceibm.s3.amazonaws.com/ace/ace-11.0.0.7.tar.gz .
 RUN mkdir ace-11
 RUN tar xzf $ACE_INSTALL --absolute-names --exclude ace-11.\*/tools --strip-components 1 --directory /opt/ibm/ace-11
 
@@ -46,6 +49,8 @@ LABEL summary="$SUMMARY" \
       usage=""
 
 USER root
+
+
 
 # Add required license as text file in Liceses directory (GPL, MIT, APACHE, Partner End User Agreement, etc)
 COPY /licenses/ /licenses/
@@ -87,20 +92,35 @@ ENV BASH_ENV=/usr/local/bin/ace_env.sh
 
 # Expose ports.  7600, 7800, 7843 for ACE; 1414 for MQ; 9157 for MQ metrics; 9483 for ACE metrics;
 #EXPOSE 7600 7800 7843 1414 9157 9483
-EXPOSE 7600 7800 7843 1414 9157 9483 4414 11883
+EXPOSE 7600 7800 7843 1414 9157 9483 4414 11883 7080 7801
 
 # Set permissions for OpenTracing directories
 RUN chown mqm:mqm /etc/ACEOpenTracing /opt/ACEOpenTracing /var/log/ACEOpenTracing
+
+#Se agrega para tener variable de odbc.ini
+RUN echo ". /opt/ibm/ace-11/server/bin/mqsiprofile" >> /opt/ibm/ace-11/server/bin/mqsiprofile
+RUN echo "export ODBCINI=/home/aceuser/ace-server/odbc.ini" >> /opt/ibm/ace-11/server/bin/mqsiprofile
+
+# driver mysql
+COPY ubi/bd/ /opt/ibm/ace-11/server/ODBC/drivers/lib/
+COPY ubi/driverbd /root/ 
+
+# se instalan driver mysql
+RUN rpm -ihv /root/libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm
+RUN rpm -ihv /root/unixODBC-2.3.1-14.el7.x86_64.rpm
+RUN rpm -ihv /root/mysql-connector-odbc-8.0.17-1.el7.x86_64.rpm
+
 
 USER mqm
 
 WORKDIR /home/aceuser
 RUN mkdir /home/aceuser/initial-config && chown mqm:mqm /home/aceuser/initial-config
-#personalizar objetos
+#personalizar objetos  de initial-config/
 COPY ubi/initial-config-copia/ /home/aceuser/initial-config/
+COPY ubi/bariib/ /home/aceuser/bariib/
 
-#DNS
-#RUN echo 'nameserver 8.8.8.8' > /etc/resolv.conf
+
+
 
 ENV USE_QMGR=true LOG_FORMAT=basic
 
