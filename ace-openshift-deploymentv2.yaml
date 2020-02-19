@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appconnect
+  labels:
+    app: appconnect
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: appconnect
+  template:
+    metadata:
+      labels:
+        app: appconnect
+    spec:
+      serviceAccount: icamargo
+      containers:
+      - name: appconnect
+        image: us.icr.io/registryibm/ace/sha256:ead6c250f72e0d07ca76f297d35cf845b68d0c767ac4b15316d817dc72953a2f
+        ports:
+        - containerPort: 7600
+          name: xaaa2
+        - containerPort: 7800
+          name: yeee2
+        - containerPort: 7843
+          name: ziii2
+        - containerPort: 1414
+          name: aooo2
+        - containerPort: 9843
+          name: prometheus  
+        env:
+        - name: LICENSE
+          value: "accept"
+        - name: MQ_QMGR_NAME
+          value: "QMGR"
+        - name: ACE_SERVER_NAME
+          value: "ACESERVER"
+        - name: ACE_ENABLE_METRICS
+          value: "true"  
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        #command: ["echo"]
+        #args: ["$(LICENSE) $(MQ_QMGR_NAME) $(ACE_SERVER_NAME)"]

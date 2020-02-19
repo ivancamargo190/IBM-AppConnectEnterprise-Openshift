@@ -1,0 +1,34 @@
+---
+RestAdminListener:
+  basicAuth: false                                                    # Clients web user name and password will be authenticated when set true
+Monitoring:
+  MessageFlow:
+    publicationOn: 'active'         # choose 1 of : active|inactive, default inactive
+                                       # Ensure Events.BusinessEvents.MQ|MQTT is set
+    eventFormat: 'MonitoringEventV2'  # choose 1 of : MonitoringEventV2|WMB
+#RestAdminListener:
+#  port: 7601                # Set the Admin REST API Port for ACE Web UI and Toolkit or -1 to disable. Defaults to 7600.
+
+Statistics:
+  # Application message flows will by default inherit Snapshot and Archive values set here
+  Snapshot:
+    publicationOn: 'active'   # choose 1 of : active|inactive, default inactive
+                                 # Also set Events.OperationalEvents.MQ|MQTT for outputFormat json,xml to be published to MQ/MQTT
+    accountingOrigin: 'basic'    # choose 1 of : none|basic
+    nodeDataLevel: 'basic'       # choose 1 of : none|basic|advanced
+    outputFormat: 'usertrace'   # comma separated list of : csv,bluemix,json,xml,usertrace
+    threadDataLevel: 'basic'     # choose 1 of : none|basic
+  Archive:
+    archivalOn: 'active'      # choose 1 of : active|inactive, default inactive
+                                 # Also set Events.OperationalEvents.MQ|MQTT for outputFormat xml to be published to MQ/MQTT
+    accountingOrigin: 'basic'    # choose 1 of : none|basic
+    majorInterval: 60           # Sets the interval in minutes at which archive statistics are published
+    nodeDataLevel: 'none'       # choose 1 of : none|basic|advanced
+    outputFormat: 'usertrace'   # comma separated list of : csv,xml,usertrace
+    threadDataLevel: 'none'     # choose 1 of : none|basic
+  Resource:
+    outputFormat: 'file'            # comma separated list of : file,bluemix
+    reportingOn: true          # choose 1 of : true|false
+    
+#HTTPConnector:
+#    ListenerPort: 7801
