@@ -14,8 +14,7 @@ pipeline {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
                     
-                    }    
-                }
+                }    
             }
         }
         stage('Push ACE Docker Image to Registry') {
@@ -32,3 +31,4 @@ pipeline {
             }
         }
     }
+}
