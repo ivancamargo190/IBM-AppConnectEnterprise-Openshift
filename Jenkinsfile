@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-        PATH = "/usr/local/go/bin:$PATH"
         DOCKER_IMAGE_NAME = "us.gcr.io/sincere-chariot-260312/acebancamovil110007v2"
     }
     stages {
