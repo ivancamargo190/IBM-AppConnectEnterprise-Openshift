@@ -31,11 +31,5 @@ pipeline {
                 }
             }
         }
-        stage('Deploy App Connect Enterprise over RedHat Openshift') {
-            
-        }
-        stage('Get Service IP') {
-            
-        }
     }
 }
