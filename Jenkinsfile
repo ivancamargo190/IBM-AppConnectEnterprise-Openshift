@@ -8,7 +8,7 @@ pipeline {
         
         stage('Build App Connect Enteprise Docker Image') {
             when { 
-                branch 'dev'
+                branch 'master'
             }
             steps {
                 script {
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Push ACE Docker Image to Registry') {
             when {
-                branch 'dev'
+                branch 'master'
             }
             steps {
                 script {
