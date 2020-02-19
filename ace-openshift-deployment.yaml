@@ -17,16 +17,18 @@ spec:
       serviceAccount: icamargo
       containers:
       - name: appconnect
-        image: us.gcr.io/sincere-chariot-260312/ace11007mq9003saldosv1os@sha256:9018ce3ce436b65147ee10b2ab7d32ce3cfed62c191beb43a0048a2f431b62b8
+        image: us.gcr.io/sincere-chariot-260312/acebancamovil110007v2@sha256:d3d4ba22b04e0234164db95df9f389cfb576d0f5bc46107946ac97ee0714551e
         ports:
         - containerPort: 7600
-          name: xaaa2
+          name: adminace
         - containerPort: 7800
-          name: yeee2
+          name: listenerace
+        - containerPort: 7801
+          name: listenerace2
         - containerPort: 7843
-          name: ziii2
+          name: sslport
         - containerPort: 1414
-          name: aooo2
+          name: mqport
         - containerPort: 9483
           name: staticsace
         - containerPort: 9157
@@ -41,20 +43,20 @@ spec:
         - name: ACE_SERVER_NAME
           value: "ACESERVER"
         - name: ACE_ENABLE_METRICS
-          value: "true" 
-        - name:  ACE_TRUSTSTORE_PASSWORD
+          value: "false" 
+        - name: ACE_TRUSTSTORE_PASSWORD
           value: "passrods"
         - name: ACE_KEYSTORE_PASSWORD
           value: "passrods"
-        - name:  ACE_ADMIN_SERVER_SECURITY
+        - name: ACE_ADMIN_SERVER_SECURITY
           value: "false"
-        - name:  ACE_ADMIN_SERVER_CA
+        - name: ACE_ADMIN_SERVER_CA
           value: "/home/aceuser/initial-config/truststore/cacert.crt"
-        - name:  ACE_ADMIN_SERVER_CERT
+        - name: ACE_ADMIN_SERVER_CERT
           value: "/home/aceuser/initial-config/keystore/mykey.crt"
-        - name:  ACE_ADMIN_SERVER_KEY
+        - name: ACE_ADMIN_SERVER_KEY
           value: "/home/aceuser/initial-config/keystore/mykey.key"
-        - name:  MQ_ENABLE_METRICS
+        - name: MQ_ENABLE_METRICS
           value: "true"
         securityContext:
           privileged: true
