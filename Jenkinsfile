@@ -1,55 +1,41 @@
 pipeline {
-    agent {
-      node {label 'App Connect Enterprise'}
-    }
+    agent any
     environment {
-    APPLICATION_NAME = 'App Connect Enterprise'
-    GIT_REPO="https://github.com/ivancamargo190/IBM-AppConnectEnterprise-Openshift.git"
-    GIT_BRANCH="dev"
-    STAGE_TAG = "promoteToQA"
-    DEV_PROJECT = "ace-openshift"
-    STAGE_PROJECT = "ace-openshift"
-    TEMPLATE_NAME = "App Connect Enterprise"
-    ARTIFACT_FOLDER = "target"
-    REGISTRY = "us.gcr:tttttt"
-    PORT = 8081;
-}
-stages {
-    stage("Check SCM"){
-    steps {
-    git branch: "${GIT_BRANCH}", url: "${GIT_REPO}" // declared in environment
-  }
+        PATH = "/usr/local/go/bin:$PATH"
+        DOCKER_IMAGE_NAME = "us.gcr.io/sincere-chariot-260312/acebancamovil110007v2"
     }
-    stage("Build AppConnectEnterprise Image"){
-   when {
-     branch 'dev'
+    stages {
         
-    }
-    steps {
-        script {
-          app = docker.build(REGISTRY)
-            }
-    
-    }
-    stage("Push to Registry"){
-    when {
+        stage('Build App Connect Enteprise Docker Image') {
+            when { 
                 branch 'dev'
             }
-    }
-    steps {
-          script {
-              docker.withRegistry('us.gcr:tttttt', 'harbor') {
-              app.push("${env.BUILD_NUMBER}")
-                app.push("latest")
+            steps {
+                script {
+                    app = docker.build(DOCKER_IMAGE_NAME)
+                    
+                    }    
+                }
+            }
+        }
+        stage('Push ACE Docker Image to Registry') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                script {
+                    docker.withRegistry('https://us.gcr.io', 'gcr') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
                     }
                 }
-       }
-
-    stage("Deploy to RedHat Openshift"){
-    // Do Something
+            }
+        }
+        stage('Deploy App Connect Enterprise over RedHat Openshift') {
+            
+        }
+        stage('Get Service IP') {
+            
+        }
     }
-    stage("Check"){
-    // Do Something
-    }
-}
 }
