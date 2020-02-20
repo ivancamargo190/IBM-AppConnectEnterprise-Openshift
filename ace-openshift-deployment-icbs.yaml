@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: appconnect
+  name: icbs
   labels:
-    app: appconnect
+    app: icbs
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: appconnect
+      app: icbs
   template:
     metadata:
       labels:
-        app: appconnect
+        app: icbs
     spec:
-      serviceAccount: icamargo
+      serviceAccount: saibmcolombia
       containers:
-      - name: appconnect
+      - name: icbs
         image: us.gcr.io/sincere-chariot-260312/acebancamovil110007v2@sha256:d3d4ba22b04e0234164db95df9f389cfb576d0f5bc46107946ac97ee0714551e
         ports:
         - containerPort: 7600
@@ -73,11 +73,11 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: appconnect
+  name: icbs
 spec:
   type: LoadBalancer
   selector:
-    app: appconnect
+    app: icbs
   ports:
   - name: adminace
     port: 7600

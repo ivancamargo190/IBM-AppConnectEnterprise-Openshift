@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bancamovil
+  name: icbs
   labels:
-    app: bancamovil
+    app: icbs
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: bancamovil
+      app: icbs
   template:
     metadata:
       labels:
-        app: bancamovil
+        app: icbs
     spec:
       serviceAccount: saibmcolombia
       containers:
-      - name: bancamovil
-        image: us.gcr.io/sincere-chariot-260312/acebancamovil110007v2@sha256:d3d4ba22b04e0234164db95df9f389cfb576d0f5bc46107946ac97ee0714551e
+      - name: icbs
+        image: us.gcr.io/sincere-chariot-260312/aceicbs110007v2@sha256:d3d4ba22b04e0234164db95df9f389cfb576d0f5bc46107946ac97ee0714551e
         ports:
         - containerPort: 7600
           name: adminace
@@ -73,11 +73,11 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: bancamovil
+  name: icbs
 spec:
   type: LoadBalancer
   selector:
-    app: bancamovil
+    app: icbs
   ports:
   - name: adminace
     port: 7600
