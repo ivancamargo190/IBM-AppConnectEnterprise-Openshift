@@ -30,5 +30,21 @@ spec:
           limits:
             memory: "1024Mi"
             cpu: "500m"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: mysql
+spec:
+  type: LoadBalancer
+  selector:
+    app: mysql
+  ports:
+  - name: mysql
+    port: 3306
+    targetPort: 3306
+  
         #command: ["echo"]
         #args: ["$(LICENSE) $(MQ_QMGR_NAME) $(ACE_SERVER_NAME)"]
