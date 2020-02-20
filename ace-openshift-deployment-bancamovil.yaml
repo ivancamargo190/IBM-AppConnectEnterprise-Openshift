@@ -1,0 +1,107 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appconnect
+  labels:
+    app: appconnect
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: appconnect
+  template:
+    metadata:
+      labels:
+        app: appconnect
+    spec:
+      serviceAccount: icamargo
+      containers:
+      - name: appconnect
+        image: us.gcr.io/sincere-chariot-260312/acebancamovil110007v2@sha256:d3d4ba22b04e0234164db95df9f389cfb576d0f5bc46107946ac97ee0714551e
+        ports:
+        - containerPort: 7600
+          name: adminace
+        - containerPort: 7800
+          name: listenerace
+        - containerPort: 7801
+          name: listenerace2
+        - containerPort: 7843
+          name: sslport
+        - containerPort: 1414
+          name: mqport
+        - containerPort: 9483
+          name: staticsace
+        - containerPort: 9157
+          name: staticsmq
+        - containerPort: 4414
+          name: webbroker 
+        env:
+        - name: LICENSE
+          value: "accept"
+        - name: MQ_QMGR_NAME
+          value: "QMGR"
+        - name: ACE_SERVER_NAME
+          value: "ACESERVER"
+        - name: ACE_ENABLE_METRICS
+          value: "false" 
+        - name: ACE_TRUSTSTORE_PASSWORD
+          value: "passrods"
+        - name: ACE_KEYSTORE_PASSWORD
+          value: "passrods"
+        - name: ACE_ADMIN_SERVER_SECURITY
+          value: "false"
+        - name: ACE_ADMIN_SERVER_CA
+          value: "/home/aceuser/initial-config/truststore/cacert.crt"
+        - name: ACE_ADMIN_SERVER_CERT
+          value: "/home/aceuser/initial-config/keystore/mykey.crt"
+        - name: ACE_ADMIN_SERVER_KEY
+          value: "/home/aceuser/initial-config/keystore/mykey.key"
+        - name: MQ_ENABLE_METRICS
+          value: "true"
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+
+-- 
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: appconnect
+spec:
+  type: LoadBalancer
+  selector:
+    app: appconnect
+  ports:
+  - name: adminace
+    port: 7600
+    targetPort: 7600
+  - name: listenerace
+    port: 7800
+    targetPort: 7800
+  - name: sslport
+    port: 7843
+    targetPort: 7843
+  - name: mqport
+    port: 1414
+    targetPort: 1414
+  - name: staticsace
+    port: 9483
+    targetPort: 9483
+  - name: staticsmq
+    port: 9157
+    targetPort: 9157
+  - name: webbroker
+    port: 4414
+    targetPort: 4414
+  - name: listenerace2
+    port: 7801
+    targetPort: 7801
+        #command: ["echo"]
+        #args: ["$(LICENSE) $(MQ_QMGR_NAME) $(ACE_SERVER_NAME)"]
