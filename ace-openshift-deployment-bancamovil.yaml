@@ -35,6 +35,8 @@ spec:
           name: staticsmq
         - containerPort: 4414
           name: webbroker 
+        - containerPort: 11883
+          name: metricasace
         env:
         - name: LICENSE
           value: "accept"
@@ -103,5 +105,8 @@ spec:
   - name: listenerace2
     port: 7801
     targetPort: 7801
+  - name: metricasace
+    port: 11883
+    targetPort: 11883
         #command: ["echo"]
         #args: ["$(LICENSE) $(MQ_QMGR_NAME) $(ACE_SERVER_NAME)"]
