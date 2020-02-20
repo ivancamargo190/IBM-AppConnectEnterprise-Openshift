@@ -14,7 +14,6 @@ spec:
       labels:
         app: icbs
     spec:
-      serviceAccount: saibmcolombia
       containers:
       - name: icbs
         image: us.gcr.io/sincere-chariot-260312/aceicbs110007v2@sha256:d3d4ba22b04e0234164db95df9f389cfb576d0f5bc46107946ac97ee0714551e
@@ -58,8 +57,6 @@ spec:
           value: "/home/aceuser/initial-config/keystore/mykey.key"
         - name: MQ_ENABLE_METRICS
           value: "true"
-        securityContext:
-          privileged: true
         resources:
           requests:
             memory: "512Mi"
