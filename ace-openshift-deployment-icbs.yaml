@@ -67,5 +67,41 @@ spec:
           limits:
             memory: "1024Mi"
             cpu: "500m"
+
+--- 
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: appconnect
+spec:
+  type: LoadBalancer
+  selector:
+    app: appconnect
+  ports:
+  - name: adminace
+    port: 7600
+    targetPort: 7600
+  - name: listenerace
+    port: 7800
+    targetPort: 7800
+  - name: sslport
+    port: 7843
+    targetPort: 7843
+  - name: mqport
+    port: 1414
+    targetPort: 1414
+  - name: staticsace
+    port: 9483
+    targetPort: 9483
+  - name: staticsmq
+    port: 9157
+    targetPort: 9157
+  - name: webbroker
+    port: 4414
+    targetPort: 4414
+  - name: listenerace2
+    port: 7801
+    targetPort: 7801
         #command: ["echo"]
         #args: ["$(LICENSE) $(MQ_QMGR_NAME) $(ACE_SERVER_NAME)"]
