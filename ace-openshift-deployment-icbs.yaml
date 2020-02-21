@@ -17,7 +17,7 @@ spec:
       serviceAccount: saibmcolombia
       containers:
       - name: icbs
-        image: us.gcr.io/sincere-chariot-260312/ace11007mq9003bancamovilosv7@sha256:6612d38de32a5e2982e75f3f53b0ecc04a18572265315fbeb44f2b7d4877c049
+        image: us.gcr.io/sincere-chariot-260312/ace11007mq9003icbsosv9@sha256:0659383a2269f641e37a828b787cea005e5a9caaa99a7317899df33324db1d84
         ports:
         - containerPort: 7600
           name: adminace
@@ -43,9 +43,9 @@ spec:
         - name: MQ_QMGR_NAME
           value: "QMGR"
         - name: ACE_SERVER_NAME
-          value: "ACESERVER"
+          value: "BANCAEMPRESARIAL"
         - name: ACE_ENABLE_METRICS
-          value: "false" 
+          value: "true" 
         - name: ACE_TRUSTSTORE_PASSWORD
           value: "passrods"
         - name: ACE_KEYSTORE_PASSWORD
