@@ -5,7 +5,7 @@ metadata:
   labels:
     app: icbs
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: icbs
@@ -64,11 +64,11 @@ spec:
           privileged: true
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "1000m"
+            memory: "768Mi"
+            cpu: "1300m"
           limits:
-            memory: "1024Mi"
-            cpu: "2000m"
+            memory: "1280Mi"
+            cpu: "2600m"
 
 --- 
 
