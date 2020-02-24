@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontendbm
+  labels:
+    app: frontendbm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontendbm
+  template:
+    metadata:
+      labels:
+        app: frontendbm
+    spec:
+      serviceAccount: saibmcolombia
+      containers:
+      - name: frontendbm
+        image: us.gcr.io/sincere-chariot-260312/wildflyfrontendos@sha256:073782189f6cb0244801771b511e6e8dda7839033a75f67c6badd82ee84e8203
+        ports:
+        - containerPort: 8080
+          name: frontendbm
+        - containerPort: 9990
+          name: manage
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "50m"
+          limits:
+            memory: "100Mi"
+            cpu: "100m"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontendbm
+spec:
+  type: LoadBalancer
+  selector:
+    app: frontendbm
+  ports:
+  - name: frontendbm
+    port: 8080
+    targetPort: 8080
+  - name: manage
+    port: 9990
+    targetPort: 9990
+  
+        #command: ["echo"]
+        #args: ["$(LICENSE) $(MQ_QMGR_NAME) $(ACE_SERVER_NAME)"]
