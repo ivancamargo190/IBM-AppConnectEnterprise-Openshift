@@ -45,7 +45,7 @@ spec:
         - name: ACE_SERVER_NAME
           value: "BANCAEMPRESARIAL"
         - name: ACE_ENABLE_METRICS
-          value: "true" 
+          value: "false" 
         - name: ACE_TRUSTSTORE_PASSWORD
           value: "passrods"
         - name: ACE_KEYSTORE_PASSWORD
