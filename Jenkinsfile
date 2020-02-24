@@ -29,5 +29,15 @@ pipeline {
                 }
             }
         }
+        stage('Deploy ACE over Openshift Container Platform') {
+            when {
+                branch 'master'
+            }
+            steps {
+                
+                    }
+                }
+            }
+        }
     }
 }
