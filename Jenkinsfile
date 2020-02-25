@@ -25,7 +25,7 @@ pipeline {
                     sh "gcloud docker -- push DOCKER_IMAGE_NAME:latest"
                     }
                 }
-            }
+ 
         }
         
     }
