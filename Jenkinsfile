@@ -34,19 +34,14 @@ pipeline {
                 branch 'master'
             }
             steps {
-                
-                    }
-                }
             }
         }
         stage('Deploy ACE over Openshift Container Platform Production') {
             when {
                 branch 'master'
             }
-            steps {
+            steps {        
                 
-                    }
-                }
             }
         }
     }
