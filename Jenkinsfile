@@ -27,7 +27,9 @@ pipeline {
                         app.push("latest")
                     
                 }
- 
+              }
+            }
+
         }
         
         stage('Deploy App Connect Enterprise Openshift Container Platform') {
