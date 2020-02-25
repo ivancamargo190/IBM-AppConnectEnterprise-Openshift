@@ -28,5 +28,19 @@ pipeline {
  
         }
         
+        stage('Deploy ACE Openshift Container Platform') {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    sh "gcloud docker -- push DOCKER_IMAGE_NAME:latest"
+                    }
+                }
+            }
+        
+        }
+    
+        
     }
 }
