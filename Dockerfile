@@ -102,13 +102,13 @@ RUN echo ". /opt/ibm/ace-11/server/bin/mqsiprofile" >> /opt/ibm/ace-11/server/bi
 RUN echo "export ODBCINI=/home/aceuser/ace-server/odbc.ini" >> /opt/ibm/ace-11/server/bin/mqsiprofile
 
 # driver mysql
-#COPY ubi/bd/ /opt/ibm/ace-11/server/ODBC/drivers/lib/
-#COPY ubi/driverbd /root/ 
+COPY ubi/bd/ /opt/ibm/ace-11/server/ODBC/drivers/lib/
+COPY ubi/driverbd /root/ 
 
 # se instalan driver mysql
-#RUN rpm -ihv /root/libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm
-#RUN rpm -ihv /root/unixODBC-2.3.1-14.el7.x86_64.rpm
-#RUN rpm -ihv /root/mysql-connector-odbc-8.0.17-1.el7.x86_64.rpm
+RUN rpm -ihv /root/libtool-ltdl-2.4.2-22.el7_3.x86_64.rpm
+RUN rpm -ihv /root/unixODBC-2.3.1-14.el7.x86_64.rpm
+RUN rpm -ihv /root/mysql-connector-odbc-8.0.17-1.el7.x86_64.rpm
 
 
 USER mqm
