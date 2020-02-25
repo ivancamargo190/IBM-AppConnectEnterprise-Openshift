@@ -5,7 +5,7 @@ pipeline {
     }
     stages {
         
-        stage('Build App Connect Enteprise Docker Image') {
+        stage('Build App Connect Enterprise Docker Image') {
             when { 
                 branch 'master'
             }
@@ -16,7 +16,7 @@ pipeline {
                 }    
             }
         }
-        stage('Push ACE Docker Image to Registry') {
+        stage('Push App Connect Enterprise Docker Image to Registry') {
             when {
                 branch 'master'
             }
@@ -28,7 +28,7 @@ pipeline {
  
         }
         
-        stage('Deploy ACE Openshift Container Platform') {
+        stage('Deploy App Connect Enterprise Openshift Container Platform') {
             when {
                 branch 'master'
             }
