@@ -117,7 +117,7 @@ WORKDIR /home/aceuser
 RUN mkdir /home/aceuser/initial-config && chown mqm:mqm /home/aceuser/initial-config
 #personalizar objetos  de initial-config/
 COPY ubi/initial-config-copia/ /home/aceuser/initial-config/
-COPY ubi/bariib/ /home/aceuser/bariib/
+#COPY ubi/bariib/ /home/aceuser/bariib/
 
 
 
