@@ -22,9 +22,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://us.gcr.io', 'gcr') {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
+                    sh "gcloud docker -- push DOCKER_IMAGE_NAME:latest"
                     }
                 }
             }
