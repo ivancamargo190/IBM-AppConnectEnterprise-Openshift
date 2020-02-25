@@ -22,7 +22,7 @@ pipeline {
             }
             steps {
                 script {
-                     docker.withRegistry('https://us.gcr.io', 'gcr:[gcr2]')) {
+                     docker.withRegistry('https://us.gcr.io', 'gcr:gcr2')) {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     
