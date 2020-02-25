@@ -1,3 +1,5 @@
+ARG BASE_IMAGE=ibmcom/mq:9.1.3.0-r3
+
 FROM golang:1.10.3 as builder
 
 WORKDIR /go/src/github.com/ot4i/ace-docker/
@@ -24,7 +26,7 @@ ADD https://aceibm.s3.amazonaws.com/ace/ace-11.0.0.7.tar.gz .
 RUN mkdir ace-11
 RUN tar xzf $ACE_INSTALL --absolute-names --exclude ace-11.\*/tools --strip-components 1 --directory /opt/ibm/ace-11
 
-FROM ibmcom/mq:9.1.3.0-r3
+FROM BASE_IMAGE
 
 ENV SUMMARY="Integration Server for App Connect Enterprise" \
     DESCRIPTION="Integration Server for App Connect Enterprise" \
