@@ -1,5 +1,6 @@
-FROM golang:1.10.3 as builder
 ARG BASE_IMAGE=ibmcom/mq:9.1.3.0-r3
+
+FROM golang:1.10.3 as builder
 
 WORKDIR /go/src/github.com/ot4i/ace-docker/
 ARG IMAGE_REVISION="Not specified"
