@@ -23,6 +23,7 @@ pipeline {
             steps {
                 script {
                     sh """
+                    docker tag  "${DOCKER_IMAGE_NAME}":"${env.BUILD_NUMBER}"
                     docker push "${DOCKER_IMAGE_NAME}":"${env.BUILD_NUMBER}"
                     """
                 }
