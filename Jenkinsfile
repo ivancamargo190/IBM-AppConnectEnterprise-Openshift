@@ -22,10 +22,13 @@ pipeline {
             }
             steps {
                 script {
-                    sh """
-                    docker tag  "${DOCKER_IMAGE_NAME}":"${env.BUILD_NUMBER}"
-                    docker push "${DOCKER_IMAGE_NAME}":"${env.BUILD_NUMBER}"
-                    """
+                    docker.withRegistry('https://us.gcr.io') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                    //sh """
+                    //docker push "${DOCKER_IMAGE_NAME}":"${env.BUILD_NUMBER}"
+                    //"""
+                }
                 }
               }
 
