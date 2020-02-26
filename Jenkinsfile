@@ -40,7 +40,7 @@ pipeline {
             }
             steps {
                 script {
-                    
+                    sh "gcloud docker -- push DOCKER_IMAGE_NAME:latest"
                     }
                 }
          }
