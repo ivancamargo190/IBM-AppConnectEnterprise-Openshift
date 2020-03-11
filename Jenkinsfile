@@ -11,22 +11,22 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build(DOCKER_IMAGE_NAME)
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     
                 }    
             }
         }
+        
         stage('Push App Connect Enterprise Docker Image to Registry') {
             when {
                 branch 'master'
             }
             steps {
-	    	script { 
-			docker.withRegistry("https://us.gcr.io", "gcr:IBMer") { 
-		    		app.push("${env.BUILD_NUMBER}")
-		    		app.push("latest")
-		    	}
-	    	}
+                script {
+                    docker.withRegistry( '', miguelhalliburton ) {
+                        dockerImage.push()
+                    }
+                }
             }
         }
         
@@ -37,8 +37,8 @@ pipeline {
             steps {
                 script {
                     sh "gcloud docker -- push DOCKER_IMAGE_NAME:latest"
-                    }
                 }
-         }    
+            }
+        }    
     }
 }
