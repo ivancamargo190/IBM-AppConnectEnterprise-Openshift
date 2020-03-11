@@ -39,7 +39,8 @@ pipeline {
                     openshift.withCluster( 'https://c100-e.us-south.containers.cloud.ibm.com:32343', '4YH_kqNnpDx8bFj-ODEhDfzJbOw3xrsd7CSTtzyuNEY' ) {
                         openshift.withProject( 'project-icbs' ) {
                         //echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
-                        openshift.apply('ace-openshift-deployment-bancamovil.yaml').object()
+                        //openshift.create(readFile('ace-openshift-deployment-bancamovil.yaml'))
+                        sh 'oc apply -f ace-openshift-deployment-bancamovil.yaml'
                         }
                     }
                 }
