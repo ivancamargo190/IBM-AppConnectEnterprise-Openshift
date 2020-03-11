@@ -21,14 +21,12 @@ pipeline {
                 branch 'master'
             }
             steps {
-                container('jx-base') {
-                    script { 
-                        docker.withRegistry("https://gcr.io", "gcr:IBMer") { 
-                            app.push("${env.BUILD_NUMBER}")
-                            app.push("latest")
-	                    }
-                    }
-                }
+	    	script { 
+			docker.withRegistry("https://gcr.io", "gcr:IBMer") { 
+		    		app.push("${env.BUILD_NUMBER}")
+		    		app.push("latest")
+		    	}
+	    	}
             }
         }
         
@@ -41,10 +39,6 @@ pipeline {
                     sh "gcloud docker -- push DOCKER_IMAGE_NAME:latest"
                     }
                 }
-         }
-        
-        
-    
-        
+         }    
     }
 }
