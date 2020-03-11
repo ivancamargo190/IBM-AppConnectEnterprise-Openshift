@@ -21,17 +21,15 @@ pipeline {
                 branch 'master'
             }
             steps {
-                script {
-                    docker.withRegistry('https://us.gcr.io','gcr:IBMer') {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
-                    //sh """
-                    //docker push "${DOCKER_IMAGE_NAME}":"${env.BUILD_NUMBER}"
-                    //"""
+                container('jx-base') {
+                    script { 
+                        docker.withRegistry("https://gcr.io", "gcr:IBMer") { 
+                            app.push("${env.BUILD_NUMBER}")
+                            app.push("latest")
+	                    }
+                    }
                 }
-                }
-              }
-
+            }
         }
         
         stage('Deploy App Connect Enterprise Openshift Container Platform') {
