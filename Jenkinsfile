@@ -24,7 +24,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry( '', miguelhalliburton ) {
+                    docker.withRegistry( '', dockerhub ) {
                         dockerImage.push()
                     }
                 }
