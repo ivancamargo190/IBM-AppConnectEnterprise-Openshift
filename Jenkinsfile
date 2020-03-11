@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        registry = "miguelhalliburton/ibmer"
+        registry = "80190363/ibmace"
         registryCredential = 'dockerhub'
     }
     stages {
