@@ -38,7 +38,7 @@ pipeline {
                 script {
                         sh 'oc apply -f /var/lib/jenkins/workspace/nnectEnterprise-Openshift_masterace-openshift-deployment-bancamovil.yaml'
                         }
-                    }
+                    
                 }
             }
         }  
