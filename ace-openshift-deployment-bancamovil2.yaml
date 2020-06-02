@@ -17,7 +17,7 @@ spec:
       serviceAccount: saibmcolombia
       containers:
       - name: bancamovil2
-        image: 80190363/ibmace:$BUILD_NUMBER
+        image: $registry:$BUILD_NUMBER
         ports:
         - containerPort: 7600
           name: adminace
