@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bancamovil2
+  labels:
+    app: bancamovil2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bancamovil2
+  template:
+    metadata:
+      labels:
+        app: bancamovil2
+    spec:
+      serviceAccount: saibmcolombia
+      containers:
+      - name: bancamovil2
+        image: 80190363/ibmace:$BUILD_NUMBER
+        ports:
+        - containerPort: 7600
+          name: adminace
+        - containerPort: 7800
+          name: listenerace
+        - containerPort: 7801
+          name: listenerace2
+        - containerPort: 7843
+          name: sslport
+        - containerPort: 1414
+          name: mqport
+        - containerPort: 9483
+          name: staticsace
+        - containerPort: 9157
+          name: staticsmq
+        - containerPort: 4414
+          name: webbroker 
+        - containerPort: 11883
+          name: metricasace
+        env:
+        - name: LICENSE
+          value: "accept"
+        - name: MQ_QMGR_NAME
+          value: "QMGR"
+        - name: ACE_SERVER_NAME
+          value: "ACESERVER"
+        - name: ACE_ENABLE_METRICS
+          value: "false" 
+        - name: ACE_TRUSTSTORE_PASSWORD
+          value: "passrods"
+        - name: ACE_KEYSTORE_PASSWORD
+          value: "passrods"
+        - name: ACE_ADMIN_SERVER_SECURITY
+          value: "false"
+        - name: ACE_ADMIN_SERVER_CA
+          value: "/home/aceuser/initial-config/truststore/cacert.crt"
+        - name: ACE_ADMIN_SERVER_CERT
+          value: "/home/aceuser/initial-config/keystore/mykey.crt"
+        - name: ACE_ADMIN_SERVER_KEY
+          value: "/home/aceuser/initial-config/keystore/mykey.key"
+        - name: MQ_ENABLE_METRICS
+          value: "true"
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "1000m"
+          limits:
+            memory: "1024Mi"
+            cpu: "2000m"
+
+--- 
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: bancamovil2
+spec:
+  type: LoadBalancer
+  selector:
+    app: bancamovil2
+  ports:
+  - name: adminace
+    port: 7600
+    targetPort: 7600
+  - name: listenerace
+    port: 7800
+    targetPort: 7800
+  - name: sslport
+    port: 7843
+    targetPort: 7843
+  - name: mqport
+    port: 1414
+    targetPort: 1414
+  - name: staticsace
+    port: 9483
+    targetPort: 9483
+  - name: staticsmq
+    port: 9157
+    targetPort: 9157
+  - name: webbroker
+    port: 4414
+    targetPort: 4414
+  - name: listenerace2
+    port: 7801
+    targetPort: 7801
+  - name: metricasace
+    port: 11883
+    targetPort: 11883
+        #command: ["echo"]
+        #args: ["$(LICENSE) $(MQ_QMGR_NAME) $(ACE_SERVER_NAME)"]
