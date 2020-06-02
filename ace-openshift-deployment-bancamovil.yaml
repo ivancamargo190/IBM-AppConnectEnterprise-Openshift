@@ -17,7 +17,7 @@ spec:
       serviceAccount: saibmcolombia
       containers:
       - name: bancamovil
-        image: us.gcr.io/sincere-chariot-260312/ace11007mq9003icbscv10@sha256:1619b8da95b29f8d88cba17e002b034ef7a6275af170317a800faebf3bb84ad9
+        image: 80190363/ibmace:$BUILD_NUMBER
         ports:
         - containerPort: 7600
           name: adminace
