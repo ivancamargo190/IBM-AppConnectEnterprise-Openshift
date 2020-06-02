@@ -36,8 +36,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'oc login --token=a2n8jceVJODcydaXR2q8z-FPhG5aKR0qb4BRaU9IMcM --server=https://c107-e.us-south.con
-tainers.cloud.ibm.com:32172'    
+                    sh 'oc login --token=a2n8jceVJODcydaXR2q8z-FPhG5aKR0qb4BRaU9IMcM --server=https://c107-e.us-south.containers.cloud.ibm.com:32172'    
                     sh 'oc apply -f /var/lib/jenkins/workspace/nnectEnterprise-Openshift_masterace-openshift-deployment-bancamovil.yaml'
                         }  
                 }
