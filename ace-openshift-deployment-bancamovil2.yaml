@@ -17,7 +17,7 @@ spec:
       serviceAccount: saibmcolombia
       containers:
       - name: bancamovil2
-        image: $registry:$BUILD_NUMBER
+        image: $dockerImage
         ports:
         - containerPort: 7600
           name: adminace
