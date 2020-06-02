@@ -21,8 +21,8 @@ RUN go vet ./cmd/... ./internal/...
 ARG ACE_INSTALL=ace-11.0.0.7.tar.gz
 WORKDIR /opt/ibm
 #COPY deps/$ACE_INSTALL .
-ADD https://aceibm.s3.amazonaws.com/ace/ace-11.0.0.7.tar.gz .
-#COPY https://aceibm.s3.amazonaws.com/ace/ace-11.0.0.7.tar.gz .
+ADD https://appconnectenterprise.s3.amazonaws.com/ace-11.0.0.7.tar.gz .
+#COPY https://appconnectenterprise.s3.amazonaws.com/ace-11.0.0.7.tar.gz .
 RUN mkdir ace-11
 RUN tar xzf $ACE_INSTALL --absolute-names --exclude ace-11.\*/tools --strip-components 1 --directory /opt/ibm/ace-11
 
