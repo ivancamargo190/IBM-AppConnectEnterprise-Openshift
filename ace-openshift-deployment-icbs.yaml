@@ -17,7 +17,7 @@ spec:
       serviceAccount: saibmcolombia
       containers:
       - name: icbs
-        image: us.gcr.io/sincere-chariot-260312/ace11007mq9003icbsosv9@sha256:0659383a2269f641e37a828b787cea005e5a9caaa99a7317899df33324db1d84
+        image: us.gcr.io/sincere-chariot-260312/ace11007mq9003icbsv9@sha256:cb42a95ff4223b9432cb8438375b1659cfd56a851cbfc49dcfb61c92f2aca40e
         ports:
         - containerPort: 7600
           name: adminace
